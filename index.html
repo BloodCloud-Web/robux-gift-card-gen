@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Robuc Code Generator</title>
+</head>
+<body>
+  <h2>Unused Robux Code Generator</h2>
+  <p id="codeDisplay"></p>
+
+  <script>
+    function generateCode() {
+      const part1 = Math.floor(100 + Math.random() * 900);   // 3 digits
+      const part2 = Math.floor(100 + Math.random() * 900);   // 3 digits
+      const part3 = Math.floor(1000 + Math.random() * 9000); // 4 digits
+      return `${part1}-${part2}-${part3}`;
+    }
+
+    const code = generateCode();
+    document.getElementById("codeDisplay").textContent = "Generated Code: " + code;
+    console.log("Generated Code:", code); // optional for debug
+  </script>
+</body>
+</html>
