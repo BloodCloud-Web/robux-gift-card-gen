@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Robuc Code Generator</title>
+  <title>Robux Redeem Code Generator</title>
 </head>
 <body>
-  <h2>Unused Robux Code Generator</h2>
+  <h2>Robux Redeem Code Generator</h2>
+  
+  <button onclick="showCode()">Generate Code</button>
   <p id="codeDisplay"></p>
+  
+  <button id="copyButton" onclick="copyCode()" style="display: none;">Copy Code</button>
 
   <script>
     function generateCode() {
-      const part1 = Math.floor(100 + Math.random() * 900);   // 3 digits
-      const part2 = Math.floor(100 + Math.random() * 900);   // 3 digits
-      const part3 = Math.floor(1000 + Math.random() * 9000); // 4 digits
+      const part1 = Math.floor(100 + Math.random() * 900);
+      const part2 = Math.floor(100 + Math.random() * 900);
+      const part3 = Math.floor(1000 + Math.random() * 9000);
       return `${part1}-${part2}-${part3}`;
     }
 
-    const code = generateCode();
-    document.getElementById("codeDisplay").textContent = "Generated Code: " + code;
-    console.log("Generated Code:", code); // optional for debug
+    function showCode() {
+      const code = generateCode();
+      const codeDisplay = document.getElementById("codeDisplay");
+      codeDisplay.textContent = "Generated Code: " + code;
+
+      // Show the copy button
+      document.getElementById("copyButton").style.display = "inline-block";
+    }
+
+    function copyCode() {
+      const codeText = document.getElementById("codeDisplay").textContent.replace("Generated Code: ", "");
+
+      // Create a temporary input to copy from
+      const tempInput = document.createElement("input");
+      tempInput.value = codeText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      alert("Code copied: " + codeText);
+    }
   </script>
 </body>
 </html>
